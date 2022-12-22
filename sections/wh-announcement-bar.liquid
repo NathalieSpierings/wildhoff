@@ -1,0 +1,145 @@
+{%- assign fontfamily = section.settings.fontfamily -%}
+
+
+{%- if fontfamily -%}
+	{%- style -%}
+		.announcement {
+			--announcementFont: var(--{{ fontfamily }});
+		}
+	{%- endstyle -%}	
+{%- endif -%}
+
+<div class="announcement color-{{ section.settings.color_scheme }}"  role="region" aria-label="{{ 'sections.header.announcement' | t }}">
+	
+    {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'announcement' -%}
+            
+            {%- if block.settings.announcement_text != blank -%}
+                {%- if block.settings.link != blank -%}
+
+                    <a href="{{ block.settings.link }}" class="announcement__item">
+                        {%- if block.settings.announcement_icon != blank -%}
+                        {{ block.settings.announcement_icon }}
+                        {%- endif -%}
+                        
+                        <h6>{{ block.settings.announcement_text | escape}}</h6>
+                    </a>
+
+                {%- else -%}
+
+                    <div class="announcement__item">
+                    {%- if block.settings.announcement_icon != blank -%}
+                    {{ block.settings.announcement_icon }}
+                    {%- endif -%}
+                    
+                    <h6>{{ block.settings.announcement_text }}</h6>
+                    </div>
+
+                {%- endif -%}
+            {%- endif -%}
+        {%- endcase -%}
+    {%- endfor -%}        
+
+</div>
+
+{% schema %}
+{
+	"name": "t:sections.announcement-bar.name",
+	"max_blocks": 3,
+	"blocks": [
+		{
+			"type": "announcement",
+			"name": "t:sections.announcement-bar.blocks.announcement.name",
+			"settings": [
+				{
+					"type": "textarea",
+					"id": "announcement_text",
+					"default": "Welcome to our store",
+					"label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+				},
+				{
+					"type": "textarea",
+					"id": "announcement_icon",
+					"label": "SVG Icon / HTML"
+				},
+				{
+					"type": "url",
+					"id": "link",
+					"label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+				}	
+			]
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "Announcement"
+		},
+		{
+			"type": "select",
+			"id": "fontfamily",
+			"options": [
+				{
+					"value": "fontstack1",
+					"label": "t:sections.all.fontfamily.options__1.label"
+				},
+				{
+					"value": "fontstack2",
+					"label": "t:sections.all.fontfamily.options__2.label"
+				},
+				{
+					"value": "fontstack3",
+					"label": "t:sections.all.fontfamily.options__3.label"
+				}
+			],
+			"default": "fontstack2",
+			"label": "t:sections.all.fontfamily.label"
+		},
+		{
+			"type": "select",
+			"id": "color_scheme",
+			"options": [
+				{
+					"value": "light",
+					"label": "t:sections.all.colors.light.label"
+				},
+				{
+					"value": "dark",
+					"label": "t:sections.all.colors.dark.label"
+				},
+				{
+					"value": "scheme-1",
+					"label": "t:sections.all.colors.scheme_1.label"
+				},
+				{
+					"value": "scheme-2",
+					"label": "t:sections.all.colors.scheme_2.label"
+				},
+				{
+					"value": "background-1",
+					"label": "t:sections.all.colors.background_1.label"
+				},
+				{
+					"value": "background-2",
+					"label": "t:sections.all.colors.background_2.label"
+				},
+				{
+					"value": "accent-1",
+					"label": "t:sections.all.colors.accent_1.label"
+				},
+				{
+					"value": "accent-2",
+					"label": "t:sections.all.colors.accent_2.label"
+				},
+				{
+					"value": "inverse",
+					"label": "t:sections.all.colors.inverse.label"
+				}
+			],
+			"default": "scheme-2",
+			"label": "t:sections.all.colors.label"
+		}
+	]
+}
+{% endschema %}

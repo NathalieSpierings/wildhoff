@@ -1,0 +1,68 @@
+{%- if shop.customer_accounts_enabled or section.settings.header_user_link_list != blank -%}
+  <div class="header-account">
+    {%- if customer -%}   
+ 
+      <div class="dropdown ">
+        {%- if section.settings.header_user_title != blank -%}
+          <div class="header__icon header-account__title dropdown-toggle" aria-expanded="false">
+            <span class="hidden">{{ section.settings.header_user_title | escape }}</span>
+            {%- render 'icon-account' -%}
+          </div>
+        {%- endif -%}
+
+        <div class="header-account__content dropdown-menu dropdown-menu-right color-{{ section.settings.color_scheme_user }} gradient">
+          <ul class="header-account__list">
+            {%- if shop.customer_accounts_enabled -%}
+
+              {% capture fullname %}
+                {{ customer.first_name }} {{ customer.last_name }}
+              {% endcapture %}
+
+              {%- assign login_html = 'layout.header.login_html' | t : fullname : fullname -%}
+              {%- assign logout = 'layout.header.logout' | t -%}
+
+              <li class="header-account__user">
+                <a class="dropdown-item" rel="nofollow" href="{{ routes.account_url }}" title="{{ fullname }}">{{ login_html }}</a>
+              </li>
+              <li class="header-account__user">
+                <a class="dropdown-item" href="{{ routes.account_logout_url }}" title="{{ logout }}">{{ logout }}</a>
+              </li>
+            {%- endif -%}
+            {%- assign header_user_menu = section.settings.header_user_link_list -%}
+            {%- for menu_link in linklists[header_user_menu].links -%}
+              <li>
+                <a  class="dropdown-item" href="{{ menu_link.url }}" title="{{ menu_link.title | escape }}">
+                  {{ menu_link.title }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    {%- else -%}
+
+      {% if template contains 'customers' %}
+
+        <!-- Ik zit hier A -->
+        <a class="header__icon login-account" data-login-account href="#">
+          {%- render 'icon-account' -%}
+        </a>
+        {% render 'login-register' %}
+
+        <!--
+        <a class="header__icon login-account" href="{{ routes.account_url }}">
+          {%- render 'icon-account' -%}
+        </a>
+      -->
+      {% else %}
+      <!-- Ik zit hier B -->
+        <a class="header__icon login-account" data-login-account href="#" data-action="drawer">
+          {%- render 'icon-account' -%}
+        </a>
+        {% render 'login-register' %}
+      {%- endif -%}
+
+    {%- endif -%}
+  </div>
+
+  {%- endif -%}

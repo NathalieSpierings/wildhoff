@@ -1,0 +1,113 @@
+@import 'variables';
+
+// === Drawer
+
+.wh-drawer {
+    --drawer-width: 450px;
+  
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    left: -100vw;
+    right: auto;
+    z-index: 100;
+    background: rgb(var(--color-background));
+    box-shadow: 0px 0px 30px 0px rgba(82, 63, 105, 0.15);
+    -webkit-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+  
+    @include MQ-min(M) {
+      width: var(--drawer-width);
+      left: -450px;
+    }
+  
+    &--right {
+      right: -100vw;
+      left: auto;
+  
+      @include MQ-min(M) {
+        width: 450px;
+        right: -450px;
+        left: auto;
+      }
+    }
+  
+    &__overlay {
+      opacity: 0;
+      background: #1e1c1c;
+      visibility: hidden;
+      z-index: -1;
+      top: 0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.3s ease;
+    }
+  
+    &.shown {
+      transform: translateX(100vw);
+  
+      @include MQ-min(M) {
+        transform: translateX(450px) translateZ(0);
+      }
+  
+      &.wh-drawer--right {
+        transform: translateX(-100vw);
+  
+        @include MQ-min(M) {
+          transform: translateX(-450px) translateZ(0);
+        }
+      }
+  
+      + .wh-drawer__overlay {
+        opacity: 0.5;
+        visibility: visible;
+        z-index: 14;
+      }
+    }
+  
+    &__container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      padding: 2.4rem;
+    }
+  
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;    
+      padding: 0 .5rem 1rem .5rem;
+      color: rgb(var(--color-foreground));
+  
+      &.border{
+        border-bottom: 1px solid rgb(var(--color-border));
+      }
+    
+      &__title {
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+  
+    &__content {
+      overflow-y: auto;
+      padding-top: 2.4rem;
+      flex-grow: 1;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1rem .5rem 0 .5rem;
+      
+      &.border{
+        border-top: 1px solid rgb(var(--color-border));
+      }
+    }
+  }

@@ -1,0 +1,139 @@
+{%- style -%}    
+    
+    {%- if section.settings.marquee_background_color -%}
+        .wh-marquee {
+           background:{{ section.settings.marquee_background_color }};
+        }
+    {%- endif -%}
+
+    
+    {%- if section.settings.marquee_foreground_color -%}
+        .wh-marquee .wh-marquee__item{
+            color:{{ section.settings.marquee_foreground_color }};
+        }
+    {%- endif -%}
+
+    
+    {%- if section.marquee__span_foreground_color -%}
+        .wh-marquee .wh-marquee__item span{
+            color:{{ section.settings.marquee_span_foreground_color }};
+        }
+    {%- endif -%}	
+
+    {%- if section.settings.marquee_enable_horz_anim -%}
+        .wh-marquee li{
+            -webkit-animation-duration: {{ section.settings.marquee_time }}s;
+            animation-duration: {{ section.settings.marquee_time }}s;
+        }
+    {%- endif -%}
+        
+{%- endstyle -%}
+
+{%- if section.settings.show_marquee -%}
+    <div class="wh-marquee shown {% unless section.settings.show_mobile %} mobile-hidden{%- endunless -%}">
+        <div class="dismiss dismiss--xs dismiss--right dismiss--circle" data-dismiss="marquee">&nbsp;</div>
+        <div class="wh-marquee__content">
+            {%- if section.settings.marquee_content -%}
+                <ul>
+                    {% for i in (1..section.settings.marquee_loop) %}
+                        <li>
+                            {%- if section.settings.marquee_content_url != blank -%}
+                                <a href="{{ section.settings.marquee_content_url }}" class="wh-marquee__item" >
+                                    {{ section.settings.marquee_content }}
+                                </a>
+                            {%- else -%}
+                                <div class="wh-marquee__item">                                    
+                                    {{ section.settings.marquee_content }}
+                                </div>
+                            {%- endif -%}   
+                        </li>
+                    {%- endfor -%}
+                </ul>
+                {%- else -%}
+
+                {%- if section.settings.marquee_content_url != blank -%}
+                    <a href="{{ section.settings.marquee_content_url }}" class="wh-marquee__item" >
+                        {{ section.settings.marquee_content }}
+                    </a>
+                    {%- else -%}
+                    <div class="wh-marquee__item">                                    
+                        {{ section.settings.marquee_content }}
+                    </div>
+                {%- endif -%}            
+            {%- endif -%} 
+        </div>
+    </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Marquee",  
+  "settings": [
+	{
+		"type": "checkbox",
+		"id": "show_marquee",
+		"label": "Show marquee",
+		"default": false
+    },
+    {
+		"type": "header",
+		"content": "Layout"
+	},	
+	{
+		"type": "color",
+		"id": "marquee_background_color",
+		"label": "Background",
+		"default": "#2C2C2C"
+	},
+    {
+		"type": "color",
+		"id": "marquee_foreground_color",
+		"label": "Color text",
+		"default": "#FDFDFC"
+	},
+	{
+		"type": "color",
+		"id": "marquee_span_foreground_color",
+		"label": "Span tag color",
+		"default": "#D36266"
+	},
+	{
+		"type": "text",
+		"id": "marquee_content",
+		"label": "Content",
+		"default":"<div>Summer sale <span> 60% </span>korting</div>"
+	},
+	{
+		"type": "url",
+		"id": "marquee_content_url",
+		"label": "Url"
+	},
+	
+	{
+		"type": "checkbox",
+		"id": "marquee_enable_horz_anim",
+		"label": "Enable horizontal text animation",
+		"default": true
+	},
+	{
+		"type": "number",
+		"id": "marquee_loop",
+		"label": "number of repetitions of content",
+		"default": 10
+	},
+	{
+		"type": "number",
+		"id": "marquee_time",
+		"label": "Time animation",
+		"default": 4,
+		"info":"Units in seconds"
+	},
+	{
+		"type": "checkbox",
+		"id": "show_mobile",
+		"label": "Show marquee on mobile",
+		"default": true
+	}    
+  ]
+}
+{% endschema %}
