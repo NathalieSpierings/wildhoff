@@ -1,0 +1,488 @@
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {
+        "enable": false,
+        "bgimage": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "enable": false,
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "banner": {
+      "type": "featured-banner",
+      "blocks": {
+        "38cde5d8-2218-4fb1-80ad-bfcc731d4d0f": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about-us_dfe77c2e-092f-4571-a272-192129dbf407.jpg",
+            "sub_title": "",
+            "color_sub_title": "#000000",
+            "title": "",
+            "color_title": "#000000",
+            "description": "",
+            "color_description": "#000000",
+            "button": "",
+            "url": "\/",
+            "content_position": "absolute",
+            "vertical_position": "middle",
+            "horizontal_position": "center",
+            "text_align": "center",
+            "padding_content": "0 15px",
+            "padding_image": "0 15px",
+            "width_image": "100%"
+          }
+        }
+      },
+      "block_order": [
+        "38cde5d8-2218-4fb1-80ad-bfcc731d4d0f"
+      ],
+      "settings": {
+        "show": true,
+        "max_width": "1770px",
+        "fullwidth": false,
+        "padding": "0 15px | 0",
+        "margin": "80px 0",
+        "effect": "none"
+      }
+    },
+    "image_text": {
+      "type": "featured-row",
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "0 15px",
+        "margin": "0 0 80px",
+        "title": "About Outfie",
+        "desc": "Slowly she drifted to the southeast, rising higher and higher as the flames ateaway her wooden parts and diminished the weight upon her. Ascending to the roof of the building I watched her for hours until she was lost in the dim finally.",
+        "html": "<h6>Store Hours<\/h6><h6>\n<\/h6><p>Monday-Saturday : 11am–7pm ET<\/p>\n<p>Sunday : 11am–6pm ET<\/p>",
+        "image": "shopify:\/\/shop_images\/img-2.jpg"
+      }
+    },
+    "shipping": {
+      "type": "featured-title-shipping",
+      "blocks": {
+        "943d02c4-6e29-4131-afb8-1723db069505": {
+          "type": "text",
+          "settings": {
+            "title": "Free shipping",
+            "desc": "We want you to be happy with your purchase. Therefore, shipping is on us and you can return\nyour items up to 90 days."
+          }
+        },
+        "9170ffa1-14d0-4d93-8676-34d4cf218ceb": {
+          "type": "text",
+          "settings": {
+            "title": "Express delivery",
+            "desc": "Don’t feel like waiting? Our express delivery service ensures you receive your\nnew items within 5 business days."
+          }
+        },
+        "e68786a4-6484-4398-a289-d3a62df9f911": {
+          "type": "text",
+          "settings": {
+            "title": "New styles",
+            "desc": "We’re constantly designing new styles and collections. Come back soon to discover what’s new and\npick your favourite"
+          }
+        }
+      },
+      "block_order": [
+        "943d02c4-6e29-4131-afb8-1723db069505",
+        "9170ffa1-14d0-4d93-8676-34d4cf218ceb",
+        "e68786a4-6484-4398-a289-d3a62df9f911"
+      ],
+      "settings": {
+        "max_width": "1770px",
+        "fullwidth": false,
+        "padding": "0 15px | 0",
+        "margin": "0 0 80px",
+        "color": "#faf7f4"
+      }
+    },
+    "title": {
+      "type": "featured-title",
+      "blocks": {
+        "29c799d3-dc67-47fb-803b-28de4340bba5": {
+          "type": "title",
+          "settings": {
+            "title": "Our teams",
+            "color": "#000000",
+            "font_size": 30,
+            "line_height": 35,
+            "letter_spacing": 0,
+            "font_weight": "300",
+            "margin": "0px 0px 0px 0px",
+            "align": "center",
+            "color_mobi": "#000000",
+            "font_size_mobi": 25,
+            "line_height_mobi": 30,
+            "letter_spacing_mobi": 0,
+            "margin_mobi": "0px 0px 0px 0px",
+            "align_mobi": "center"
+          }
+        }
+      },
+      "block_order": [
+        "29c799d3-dc67-47fb-803b-28de4340bba5"
+      ],
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "",
+        "margin": "0 0 40px"
+      }
+    },
+    "ourteam": {
+      "type": "featured-ourteam",
+      "blocks": {
+        "bf25ff7b-0245-45f2-9468-aa07e03fb1d8": {
+          "type": "ourteam",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/our-3.jpg",
+            "name": "Kaya Luettgen",
+            "job": "Designer",
+            "social_facebook_link": "#",
+            "social_twitter_link": "#",
+            "social_pinterest_link": "",
+            "social_instagram_link": "#",
+            "social_snapchat_link": "",
+            "social_google_plus_link": "",
+            "social_tumblr_link": "",
+            "social_youtube_link": "#",
+            "social_vimeo_link": "",
+            "social_fancy_link": ""
+          }
+        },
+        "e85dc2f2-c2c4-4e07-ad9d-3395b726f8db": {
+          "type": "ourteam",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/our-1.jpg",
+            "name": "Robert Smith",
+            "job": "CEO",
+            "social_facebook_link": "#",
+            "social_twitter_link": "#",
+            "social_pinterest_link": "",
+            "social_instagram_link": "#",
+            "social_snapchat_link": "",
+            "social_google_plus_link": "",
+            "social_tumblr_link": "",
+            "social_youtube_link": "#",
+            "social_vimeo_link": "",
+            "social_fancy_link": ""
+          }
+        },
+        "02a692ad-2fef-44a8-b1e2-33cfde33adbf": {
+          "type": "ourteam",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/our-2.jpg",
+            "name": "Haleigh Walter",
+            "job": "Designer",
+            "social_facebook_link": "#",
+            "social_twitter_link": "#",
+            "social_pinterest_link": "",
+            "social_instagram_link": "#",
+            "social_snapchat_link": "",
+            "social_google_plus_link": "",
+            "social_tumblr_link": "",
+            "social_youtube_link": "#",
+            "social_vimeo_link": "",
+            "social_fancy_link": ""
+          }
+        },
+        "0ae132b5-4fc1-4149-912f-b16be7981d75": {
+          "type": "ourteam",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/our-4_e3f95b4f-644e-47bc-8ded-b06b0da5fa4b.jpg",
+            "name": "John Doe",
+            "job": "Designer",
+            "social_facebook_link": "#",
+            "social_twitter_link": "#",
+            "social_pinterest_link": "",
+            "social_instagram_link": "#",
+            "social_snapchat_link": "",
+            "social_google_plus_link": "",
+            "social_tumblr_link": "",
+            "social_youtube_link": "#",
+            "social_vimeo_link": "",
+            "social_fancy_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "bf25ff7b-0245-45f2-9468-aa07e03fb1d8",
+        "e85dc2f2-c2c4-4e07-ad9d-3395b726f8db",
+        "02a692ad-2fef-44a8-b1e2-33cfde33adbf",
+        "0ae132b5-4fc1-4149-912f-b16be7981d75"
+      ],
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "",
+        "margin": "0 0 80px",
+        "navigation": true,
+        "infinite": true,
+        "autoplay": false,
+        "autoplay_speed": "10000",
+        "columns": 3,
+        "column1440": 3,
+        "column1": 3,
+        "column2": 2,
+        "column3": 1,
+        "column4": 1
+      }
+    },
+    "title_button": {
+      "type": "featured-title-button",
+      "blocks": {
+        "4957eefb-8545-4f00-b7bb-81aa77c9099a": {
+          "type": "title",
+          "settings": {
+            "title": "Member Prices: up to 20% off select styles",
+            "color": "#000000",
+            "font_size": 50,
+            "line_height": 55,
+            "letter_spacing": 0,
+            "font_weight": "300",
+            "margin": "0px 0px 10px 0px",
+            "align": "center",
+            "color_mobi": "#000000",
+            "font_size_mobi": 25,
+            "line_height_mobi": 30,
+            "letter_spacing_mobi": 0,
+            "margin_mobi": "0px 0px 10px 0px",
+            "align_mobi": "center"
+          }
+        },
+        "b209aad4-6119-42fa-a1c6-2e3f17aaf14b": {
+          "type": "button",
+          "settings": {
+            "title": "Learn more",
+            "url": "",
+            "color": "#000000",
+            "font_size": 16,
+            "line_height": 18,
+            "letter_spacing": 0,
+            "font_weight": "400",
+            "margin": "0px 0px 0px 0px",
+            "align": "center",
+            "color_mobi": "#000000",
+            "font_size_mobi": 15,
+            "line_height_mobi": 18,
+            "letter_spacing_mobi": 0,
+            "margin_mobi": "0px 0px 0px 0px",
+            "align_mobi": "center"
+          }
+        }
+      },
+      "block_order": [
+        "4957eefb-8545-4f00-b7bb-81aa77c9099a",
+        "b209aad4-6119-42fa-a1c6-2e3f17aaf14b"
+      ],
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "",
+        "margin": "0 0 80px",
+        "color": "#f4faf7",
+        "padding_bg": "65px 15px 75px"
+      }
+    },
+    "title2": {
+      "type": "featured-title",
+      "blocks": {
+        "88fc5483-68e7-4178-b3cf-7f00ea19a5bd": {
+          "type": "title",
+          "settings": {
+            "title": "Instagram",
+            "color": "#000000",
+            "font_size": 30,
+            "line_height": 35,
+            "letter_spacing": 0,
+            "font_weight": "300",
+            "margin": "0px 0px 0px 0px",
+            "align": "center",
+            "color_mobi": "#000000",
+            "font_size_mobi": 25,
+            "line_height_mobi": 30,
+            "letter_spacing_mobi": 0,
+            "margin_mobi": "0px 0px 0px 0px",
+            "align_mobi": "center"
+          }
+        }
+      },
+      "block_order": [
+        "88fc5483-68e7-4178-b3cf-7f00ea19a5bd"
+      ],
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "",
+        "margin": "0 0 40px"
+      }
+    },
+    "instagram": {
+      "type": "featured-instagram-shop",
+      "blocks": {
+        "127bdfa9-c68d-407f-93f4-c84aa0e5a1e7": {
+          "type": "image",
+          "settings": {
+            "name": "look-1",
+            "image": "shopify:\/\/shop_images\/Artboard_1.jpg",
+            "url_lookbook": "#"
+          }
+        },
+        "94505e29-852e-4620-af5d-48ffb0b7759c": {
+          "type": "item",
+          "settings": {
+            "name_pin": "look-1",
+            "product": "embroidered-varsity-beanie",
+            "display": "bottom-right",
+            "top": 17,
+            "left": 53
+          }
+        },
+        "7d150021-1436-478c-baa3-5df94318796a": {
+          "type": "image",
+          "settings": {
+            "name": "look-2",
+            "image": "shopify:\/\/shop_images\/Artboard_2.png",
+            "url_lookbook": "#"
+          }
+        },
+        "f63bf83f-128f-4102-9559-0832bc454c4e": {
+          "type": "item",
+          "settings": {
+            "name_pin": "look-2",
+            "product": "drop-shoulder-synthetic-wool-coat",
+            "display": "bottom-left",
+            "top": 50,
+            "left": 66
+          }
+        },
+        "a25f44da-1796-4275-818e-9f1e445d956f": {
+          "type": "image",
+          "settings": {
+            "name": "look-3",
+            "image": "shopify:\/\/shop_images\/Artboard_3.png",
+            "url_lookbook": "#"
+          }
+        },
+        "8e7a0e83-088a-44de-846e-b439418e04c4": {
+          "type": "item",
+          "settings": {
+            "name_pin": "look-3",
+            "product": "round-neck-sweatshirt",
+            "display": "top-left",
+            "top": 39,
+            "left": 60
+          }
+        },
+        "f982a8c0-e90e-47c4-b6cc-297efefef797": {
+          "type": "image",
+          "settings": {
+            "name": "look-4",
+            "image": "shopify:\/\/shop_images\/Artboard_11_672fd110-c0cd-4153-a31b-a5119ce894d6.png",
+            "url_lookbook": "#"
+          }
+        },
+        "7039fb99-d71b-46cc-8cfd-1ced890d039b": {
+          "type": "item",
+          "settings": {
+            "name_pin": "look-4",
+            "product": "elastic-boots",
+            "display": "top-left",
+            "top": 50,
+            "left": 50
+          }
+        },
+        "167dbea5-1e92-46c5-98fc-ec5047edee5b": {
+          "type": "image",
+          "settings": {
+            "name": "look-5",
+            "image": "shopify:\/\/shop_images\/Artboard_7_8b313ae7-8f6f-411d-ad01-a50bc3c9df87.png",
+            "url_lookbook": "#"
+          }
+        },
+        "69b0d59d-7aa2-4b13-9e24-9d497534d460": {
+          "type": "item",
+          "settings": {
+            "name_pin": "look-5",
+            "product": "elastic-flat-sandals",
+            "display": "center-right",
+            "top": 62,
+            "left": 35
+          }
+        },
+        "048c3214-14ad-4a05-83e6-5ad7f3df547e": {
+          "type": "image",
+          "settings": {
+            "name": "look-6",
+            "image": "shopify:\/\/shop_images\/Artboard_6.png",
+            "url_lookbook": "#"
+          }
+        },
+        "1154d667-6819-44f4-baa8-7216fbfaf2a7": {
+          "type": "item",
+          "settings": {
+            "name_pin": "look-6",
+            "product": "slim-neck-t-shirt",
+            "display": "top-left",
+            "top": 50,
+            "left": 39
+          }
+        }
+      },
+      "block_order": [
+        "127bdfa9-c68d-407f-93f4-c84aa0e5a1e7",
+        "94505e29-852e-4620-af5d-48ffb0b7759c",
+        "7d150021-1436-478c-baa3-5df94318796a",
+        "f63bf83f-128f-4102-9559-0832bc454c4e",
+        "a25f44da-1796-4275-818e-9f1e445d956f",
+        "8e7a0e83-088a-44de-846e-b439418e04c4",
+        "f982a8c0-e90e-47c4-b6cc-297efefef797",
+        "7039fb99-d71b-46cc-8cfd-1ced890d039b",
+        "167dbea5-1e92-46c5-98fc-ec5047edee5b",
+        "69b0d59d-7aa2-4b13-9e24-9d497534d460",
+        "048c3214-14ad-4a05-83e6-5ad7f3df547e",
+        "1154d667-6819-44f4-baa8-7216fbfaf2a7"
+      ],
+      "settings": {
+        "max_width": "",
+        "fullwidth": true,
+        "padding": "",
+        "margin": "",
+        "margin_content": "0",
+        "padding_item": "0",
+        "margin_item": "0",
+        "navigation": true,
+        "pagination": false,
+        "infinite": true,
+        "autoplay": false,
+        "autoplay_speed": "10000",
+        "rows": 1,
+        "columns": 6,
+        "column1440": 5,
+        "column1": 4,
+        "column2": 3,
+        "column3": 2,
+        "column4": 2
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "banner",
+    "image_text",
+    "shipping",
+    "title",
+    "ourteam",
+    "title_button",
+    "title2",
+    "instagram"
+  ]
+}

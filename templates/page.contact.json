@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {
+        "enable": false,
+        "bgimage": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "enable": false,
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "map": {
+      "type": "map",
+      "settings": {
+        "max_width": "",
+        "fullwidth": true,
+        "padding": "",
+        "margin": "0 0 50px",
+        "api_key": "",
+        "html_map": "<iframe src=\"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d11759.387170744625!2d-76.55814145513065!3d42.53730912766213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d09b5582f47ec3%3A0xa6758d4b1594021e!2sMyers%20Point!5e0!3m2!1svi!2s!4v1663743872977!5m2!1svi!2s\" width=\"100%\" height=\"550\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"><\/iframe>"
+      }
+    },
+    "contact": {
+      "type": "contact-info",
+      "blocks": {
+        "2d30cb30-b344-4e0b-8ac8-fcaf0c06314f": {
+          "type": "contact",
+          "settings": {
+            "title": "Address",
+            "desc": "14 LE Gounlburn St, Sydney 1198NSA."
+          }
+        },
+        "07472fc1-0f5c-4f7b-9484-fd46656c6a76": {
+          "type": "contact",
+          "settings": {
+            "title": "Phone",
+            "desc": "(+089) 19918989"
+          }
+        },
+        "e2e5831e-9da9-4c6d-873b-9bcc5333dfd0": {
+          "type": "contact",
+          "settings": {
+            "title": "Email",
+            "desc": "support@domain.com"
+          }
+        },
+        "db09c0da-2d35-4727-b190-262e4c3a49b0": {
+          "type": "contact",
+          "settings": {
+            "title": "Opening Time",
+            "desc": "8:00Am – 10:00Pm, Sunday Close"
+          }
+        },
+        "ffdbd048-a083-47de-9662-39fe1acff923": {
+          "type": "contact",
+          "settings": {
+            "title": "Fax",
+            "desc": "0123456789"
+          }
+        }
+      },
+      "block_order": [
+        "2d30cb30-b344-4e0b-8ac8-fcaf0c06314f",
+        "07472fc1-0f5c-4f7b-9484-fd46656c6a76",
+        "e2e5831e-9da9-4c6d-873b-9bcc5333dfd0",
+        "db09c0da-2d35-4727-b190-262e4c3a49b0",
+        "ffdbd048-a083-47de-9662-39fe1acff923"
+      ],
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "",
+        "margin": "",
+        "contact_form": true,
+        "heading": "Get In Touch"
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "map",
+    "contact"
+  ]
+}

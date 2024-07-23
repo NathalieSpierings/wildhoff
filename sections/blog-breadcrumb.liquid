@@ -1,0 +1,97 @@
+{%- if section.settings.enable -%}
+	{%- assign is_bg_image = section.settings.bgimage -%}
+	{%- if is_bg_image -%}
+		{%- assign class_name = 'wpbingo-breadcrumbs--image' -%}
+	{%- else -%}
+		{%- assign class_name = 'wpbingo-breadcrumbs--no-image' -%}
+	{%- endif -%}
+	<section class="wpbingo-breadcrumbs {{ class_name }}{% if section.settings.blog_categories_menu %} have-blog-list{% endif %}">
+		{%- assign bg_image = section.settings.image -%}
+		{%- if section.blocks.size > 0 -%}
+			{%- for block in section.blocks -%}
+				{%- if block.settings.blog == blog.handle -%}
+					{%- assign bg_image = block.settings.bgimage -%}
+					{%- break -%}
+				{%- endif -%}
+			{%- endfor -%}
+		{%- endif -%}
+		<div class="wpbingo-breadcrumbs__image"
+			{%- if is_bg_image -%}
+			style="background-image: url('{{ bg_image | image_url:width:bg_image.width,height:bg_image.height  }}');background-size:cover; background-position:center center"{%- endif -%}>
+			<div class="container">
+				<div class="wpbingo-breadcrumbs__inner">
+					<h2 class="wpbingo-breadcrumbs__title">{{ 'blogs.article.blogs' | t }}</h2>
+					{%- if section.settings.blog_categories_menu -%}
+						<div class="wpbingo-blog-list">
+							{% for link in linklists[section.settings.blog_categories_menu].links %}
+								<div class="item-blog{% if link.handle == blog.handle %} active{% endif %}">
+									<a href="{{ link.url }}" title="{{ link.title | escape }}">
+										{{ link.title }}
+									</a>
+								</div>
+							{%- endfor -%}
+						</div>
+					{%- endif -%}
+				</div>
+			</div>
+		</div>
+	</section>
+{%- endif -%}
+{% schema %}
+  {
+    "name": "Breadcrumb",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "bgimage",
+        "label": "Use background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background image default",
+        "info": "Default size: 1920x480 pixels"
+      },
+		{
+			"type": "link_list",
+			"id": "blog_categories_menu",
+			"label": "Blog Categories Menu"
+		}
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Background image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "placeholder": "Title"
+          },
+          {
+            "type": "blog",
+            "id": "blog",
+            "label": "Blog"
+          },
+          {
+            "type": "image_picker",
+            "id": "bgimage",
+            "label": "Background image",
+            "info": "Image will be used in this blog"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

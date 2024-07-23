@@ -1,0 +1,121 @@
+{%- style -%}
+  {%- if section.settings.marquee_background_color -%}
+    .marquee-banner {
+      background: {{ section.settings.marquee_background_color }};
+    }
+  {%- endif -%}
+
+  {%- if section.settings.marquee_foreground_color -%}
+    .marquee-banner .marquee-banner__item {
+      color: {{ section.settings.marquee_foreground_color }};
+    }
+  {%- endif -%}
+
+  {%- if section.marquee__span_foreground_color -%}
+    .marquee-banner .marquee-banner__item span {
+      color: {{ section.settings.marquee_span_foreground_color }};
+    }
+  {%- endif -%}
+
+  {%- if section.settings.marquee_enable_horz_anim -%}
+    .marquee-banner li {
+      -webkit-animation-duration: {{ section.settings.marquee_time }}
+      s;
+      animation-duration: {{ section.settings.marquee_time }}
+      s;
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+{%- if section.settings.show_marquee -%}
+  <div class="marquee-banner shown {% unless section.settings.show_mobile %} mobile-hidden{%- endunless -%}">
+    <div class="dismiss dismiss--xs dismiss--right dismiss--circle" data-dismiss="marquee">&nbsp;</div>
+    <div class="marquee-banner__content">
+      {%- if section.settings.marquee_content -%}
+        <ul>
+          {% for i in (1..section.settings.marquee_loop) %}
+            <li>
+              {%- if section.settings.marquee_content_url != blank -%}
+                <a href="{{ section.settings.marquee_content_url }}" class="marquee-banner__item">{{ section.settings.marquee_content }}</a>
+              {%- else -%}
+                <div class="marquee-banner__item">{{ section.settings.marquee_content }}</div>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- else -%}
+
+        {%- if section.settings.marquee_content_url != blank -%}
+          <a href="{{ section.settings.marquee_content_url }}" class="marquee-banner__item">{{ section.settings.marquee_content }}</a>
+        {%- else -%}
+          <div class="marquee-banner__item">{{ section.settings.marquee_content }}</div>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "t:sections.marquee_banner.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:sections.marquee_banner.settings.header.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_marquee",
+        "label": "t:sections.marquee_banner.settings.show_marquee.label",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "marquee_background_color",
+        "label": "t:sections.marquee_banner.settings.bg_color.label",
+        "default": "#2C2C2C"
+      },
+      {
+        "type": "color",
+        "id": "marquee_foreground_color",
+        "label": "t:sections.marquee_banner.settings.fg_color.label",
+        "default": "#FDFDFC"
+      }, {
+        "type": "color",
+        "id": "marquee_span_foreground_color",
+        "label": "t:sections.marquee_banner.settings.fg_color_span.label",
+        "default": "#D36266"
+      }, {
+        "type": "text",
+        "id": "marquee_content",
+        "label": "t:sections.marquee_banner.settings.content.label",
+        "default": "<div>Summer sale <span> 60% </span>korting</div>"
+      }, {
+        "type": "url",
+        "id": "marquee_content_url",
+        "label": "t:sections.marquee_banner.settings.url.label"
+      }, {
+        "type": "checkbox",
+        "id": "marquee_enable_horz_anim",
+        "label": "t:sections.marquee_banner.settings.animation.label",
+        "default": true
+      }, {
+        "type": "number",
+        "id": "marquee_loop",
+        "label": "t:sections.marquee_banner.settings.loop.label",
+        "default": 10
+      }, {
+        "type": "number",
+        "id": "marquee_time",
+        "label": "t:sections.marquee_banner.settings.time.label",
+        "default": 4,
+        "label": "t:sections.marquee_banner.settings.time.info"
+      }, {
+        "type": "checkbox",
+        "id": "show_mobile",
+        "label": "t:sections.marquee_banner.settings.show_on_mobile.label",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

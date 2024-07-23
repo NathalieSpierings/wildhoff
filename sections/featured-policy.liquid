@@ -1,0 +1,373 @@
+{%- if section.settings.fullwidth -%}
+	{%- assign container = 'container-full' -%}
+{%- elsif section.settings.max_width != blank -%}
+	{%- assign container = 'bwp-container' -%}
+{%- else -%}
+	{%- assign container = 'container' -%}
+{%- endif -%}
+
+{%- assign max_width = '' -%}
+{%- if section.settings.fullwidth == blank and section.settings.max_width != blank -%}
+	{%- assign width_container = section.settings.max_width | plus: 0 -%}
+	{%- capture max_width -%}style="max-width: {{ section.settings.max_width }};"{%- endcapture -%}
+{%- endif -%}
+
+{% assign margin 	= section.settings.margin | split: "|" %}
+{% assign padding 	= section.settings.padding | split: "|" %}
+
+{%- style -%}
+	{%- if margin[0] != blank or padding[0] != blank -%}
+		#shopify-section-{{ section.id }} .bwp-widget-policy{
+			{%- if margin[0] != blank -%}margin: {{ margin[0] }};{%- endif -%}
+			{%- if padding[0] != blank -%}padding:{{ padding[0] }};{%- endif -%}
+		}
+	{%- endif -%}
+	{%- if section.blocks.size > 0 -%}
+		{% for block in section.blocks %}
+			{% assign width_image 		= block.settings.width_image | split: "|" %}
+			{% assign padding_image 	= block.settings.padding_image | split: "|" %}
+			{% assign padding_content 	= block.settings.padding_content | split: "|" %}
+			#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }}{
+				max-width: {{ width_image[0] }};flex:0 0 {{ width_image[0] }};
+				{%- if padding_image[0] != blank -%}padding:{{ padding_image[0] }};{%- endif -%}
+			}
+			#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }} .banner-wrapper-infor{
+				{%- if padding_content[0] != blank -%}
+					padding: {{ padding_content[0] }};
+				{%- endif -%}
+			}
+		{% endfor %}
+	{%- endif -%}
+	@media (max-width:1200px){
+		{%- if margin[1] != blank or padding[1] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy{
+				{%- if margin[1] != blank -%}margin: {{ margin[1] }};{%- endif -%}
+				{%- if padding[1] != blank -%}padding:{{ padding[1] }};{%- endif -%}
+			}
+		{%- endif -%}
+		{%- if section.blocks.size > 0 -%}
+			{%- for block in section.blocks -%}
+				{%- assign width_image 		= block.settings.width_image | split: "|" -%}
+				{% assign padding_content 	= block.settings.padding_content | split: "|" %}
+				{% assign padding_image 	= block.settings.padding_image | split: "|" %}
+				{%- if width_image[1] != blank or padding_image[1] != blank -%}
+					#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }}{
+						{%- if width_image[1] != blank -%}max-width: {{ width_image[1] }};flex:0 0 {{ width_image[1] }};{%- endif -%}
+						{%- if padding_image[1] != blank -%}padding:{{ padding_image[1] }};{%- endif -%}
+					}
+				{%- endif -%}
+				{%- if padding_content[1] != blank -%}
+					#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }} .banner-wrapper-infor{
+						padding:{{ padding_content[1] }};
+					}
+				{%- endif -%}
+			{%- endfor -%}
+		{%- endif -%}
+	}
+	@media (max-width:991px){
+		{%- if margin[2] != blank or padding[2] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy{
+				{%- if margin[2] != blank -%}margin: {{ margin[2] }};{%- endif -%}
+				{%- if padding[2] != blank -%}padding:{{ padding[2] }};{%- endif -%}
+			}
+		{%- endif -%}
+		{%- if section.blocks.size > 0 -%}
+			{%- for block in section.blocks -%}
+				{%- assign width_image 		= block.settings.width_image | split: "|" -%}
+				{% assign padding_content 	= block.settings.padding_content | split: "|" %}
+				{% assign padding_image 	= block.settings.padding_image | split: "|" %}
+				{%- if width_image[2] != blank or  padding_image[2] != blank -%}
+					#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }}{
+						{%- if width_image[2] != blank -%}max-width: {{ width_image[2] }};flex:0 0 {{ width_image[2] }};{%- endif -%}
+						{%- if padding_image[2] != blank -%}padding:{{ padding_image[2] }};{%- endif -%}
+					}
+				{%- endif -%}
+				{%- if padding_content[2] != blank -%}
+					#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }} .banner-wrapper-infor{
+						padding: {{ padding_content[2] }};
+					}
+				{%- endif -%}
+			{%- endfor -%}
+		{%- endif -%}
+	}
+	@media (max-width:767px){
+		{%- if margin[3] != blank or padding[3] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy{
+				{%- if margin[3] != blank -%}margin: {{ margin[3] }};{%- endif -%}
+				{%- if padding[3] != blank -%}padding:{{ padding[3] }};{%- endif -%}
+			}
+		{%- endif -%}
+		{%- if section.blocks.size > 0 -%}
+			{%- for block in section.blocks -%}
+				{%- assign width_image 		= block.settings.width_image | split: "|" -%}
+				{% assign padding_content 	= block.settings.padding_content | split: "|" %}
+				{% assign padding_image 	= block.settings.padding_image | split: "|" %}
+				{%- if width_image[3] != blank or padding_image[3] != blank -%}
+					#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }}{
+						{%- if width_image[3] != blank -%}max-width: {{ width_image[3] }};flex:0 0 {{ width_image[3] }};{%- endif -%}
+						{%- if padding_image[3] != blank -%}padding:{{ padding_image[3] }};{%- endif -%}
+					}
+				{%- endif -%}
+				{%- if padding_content[3] != blank -%}
+					#shopify-section-{{ section.id }} .bwp-widget-policy .col-banner.banner-{{ forloop.index }} .banner-wrapper-infor{
+						padding: {{ padding_content[3] }};
+					}
+				{%- endif -%}
+			{%- endfor -%}
+		{%- endif -%}
+	}
+{%- endstyle -%}
+
+<section class="wpbingo-section bwp-widget-policy wpbingo-section--{{ section.id }} overflow-hidden">
+	<div class="{{ container }}" {{ max_width }}>
+		<div class="wpbingo-section__inner">
+			<div class="wpbingo-section__content">
+				{%- if section.blocks.size > 0 -%}
+					<div class="row--banners bwp-load-slick-mobile" data-col1="1" data-col2="1" data-dot="true" data-nav="false" data-autoplay="true">
+						{%- for block in section.blocks -%}
+							{%- assign type_image 	= block.settings.type_image -%}
+							{%- assign image 		= block.settings.image -%}
+							{%- assign svg 			= block.settings.svg -%}
+							{%- assign title 		= block.settings.title -%}
+							{%- assign description 	= block.settings.description -%}
+							<div class="col-banner banner-{{ forloop.index }} pos-align-{{ block.settings.align }}">
+								<div class="featured-banner">
+									<div class="bwp-image" style="max-width:{{ block.settings.width_icon }}px;--color-svg:{{block.settings.color_svg}}">
+										{%- if type_image == "image" -%}
+											{%- if image -%}
+												<img class="lazyload fade-in" src="{{ image | image_url:width:image.width,height:image.height }}" width="{{ image.width }}" height="{{ image.height }}" />
+											{%- else -%}
+												<img class="lazyload fade-in" src="https://placehold.jp/100x100.png"  width="100" height="100" />
+											{%- endif -%}
+										{%- endif -%}
+										{%- if type_image == "svg" -%}
+											{%- if svg != blank -%}
+												{{ svg }}
+											{%- else -%}
+												<img class="lazyload fade-in" src="https://placehold.jp/100x100.png"  width="100" height="100" />
+											{%- endif -%}
+										{%- endif -%}
+									</div>
+									<div class="banner-wrapper-infor">
+										<div class="info">
+											<div class="content">
+												{%- if title != blank -%}
+													<div class="title-banner" style="color:{{ block.settings.color_title }};font-size:{{ block.settings.size_title }}px;">{{ title }}</div>
+												{%- endif -%}
+												{%- if description != blank -%}
+													<div class="bwp-image-description" style="color:{{ block.settings.color_description }};font-size:{{ block.settings.size_description }}px;">{{ description }}</div>
+												{%- endif -%}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{%- endfor -%}
+					</div>
+				{%- endif -%}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Wpbingo Policy",
+	"class": "wpbingo-framework",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Layout settings"
+		},
+		{
+			"type": "text",
+			"id": "max_width",
+			"label": "Width container",
+			"info": "Default: 1440px"
+		},
+		{
+			"type": "checkbox",
+			"id": "fullwidth",
+			"label": "Fullwidth"
+		},
+		{
+			"type": "text",
+			"id": "padding",
+			"label": "Padding",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		},
+		{
+			"type": "text",
+			"id": "margin",
+			"label": "Margin",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		}
+	],
+	"blocks": [
+		{
+			"type": "image",
+			"name": "Image",
+			"settings": [
+				{
+					"type": "header",
+					"content": "== image"
+				},
+				{
+					"type": "select",
+					"id": "type_image",
+					"label": "Type Image",
+					"options": [
+						{
+							"value": "svg",
+							"label": "Html svg"
+						},
+						{
+							"value": "image",
+							"label": "Image"
+						}
+					],
+					"default": "svg"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "html",
+					"id": "svg",
+					"label": "Html svg"
+				},
+				{
+					"type": "number",
+					"id": "width_icon",
+					"label": "Width",
+					"default": 50,
+					"info": "px"
+				},
+				{
+					"type": "color",
+					"id": "color_svg",
+					"label": "Color for svg",
+					"default": "#cbcbcb"
+				},
+				{
+					"type": "header",
+					"content": "== title"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "number",
+					"id": "size_title",
+					"label": "Font size",
+					"default": 16,
+					"info": "px"
+				},
+				{
+					"type": "color",
+					"id": "color_title",
+					"label": "Color title",
+					"default": "#000000"
+				},
+				{
+					"type": "header",
+					"content": "== description"
+				},
+				{
+					"type": "textarea",
+					"id": "description",
+					"label": "Description"
+				},
+				{
+					"type": "number",
+					"id": "size_description",
+					"label": "Font size",
+					"default": 15,
+					"info": "px"
+				},
+				{
+					"type": "color",
+					"id": "color_description",
+					"label": "Color Description",
+					"default": "#000000"
+				},
+				{
+					"type": "header",
+					"content": "Content settings"
+				},
+				{
+					"type": "select",
+					"id": "align",
+					"label": "Align",
+					"options": [
+						{
+							"value": "left",
+							"label": "Left"
+						},
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "right",
+							"label": "Right"
+						}
+					],
+					"default": "center"
+				},
+				{
+					"type": "textarea",
+					"id": "padding_content",
+					"label": "Padding content",
+					"default": "0 15px",
+					"info":"Screen: desktop | 1200px | 991px | 767px"
+				},
+				{
+					"type": "header",
+					"content": "Box settings"
+				},
+				{
+					"type": "text",
+					"id": "padding_image",
+					"label": "Padding item",
+					"default": "0 15px",
+					"info":"Screen: desktop | 1200px | 991px | 767px"
+				},
+				{
+					"type": "text",
+					"id": "width_image",
+					"label": "Width item",
+					"default": "25%",
+					"info":"Screen: desktop | 1200px | 991px | 767px"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Wpbingo Policy",
+			"category": "2. Wpbingo Banner",
+			"blocks": [
+				{
+					"type": "image"
+				},
+				{
+					"type": "image"
+				},
+				{
+					"type": "image"
+				},
+				{
+					"type": "image"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

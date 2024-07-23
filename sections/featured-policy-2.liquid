@@ -1,0 +1,383 @@
+{%- if section.settings.fullwidth -%}
+	{%- assign container = 'container-full' -%}
+{%- elsif section.settings.max_width != blank -%}
+	{%- assign container = 'bwp-container' -%}
+{%- else -%}
+	{%- assign container = 'container' -%}
+{%- endif -%}
+
+{%- assign max_width = '' -%}
+{%- if section.settings.fullwidth == blank and section.settings.max_width != blank -%}
+	{%- capture max_width -%}style="max-width: {{ section.settings.max_width }};"{%- endcapture -%}
+{%- endif -%}
+
+{%- assign bg_setting = '' -%}
+{%- if section.settings.bg_image != blank -%}
+	{%- capture bg_setting -%}
+		background-position:{{ section.settings.bg_position }};background-size:{{ section.settings.bg_size }};
+		{%- if section.settings.bg_fixed != blank -%}
+			background-attachment: fixed;
+		{%- endif -%}
+	{%- endcapture -%}
+{%- endif -%}
+
+{%- assign bg_full = '' -%}
+{%- if section.settings.bg_image != blank and section.settings.bg_width == 'full' -%}
+	{%- capture bg_full -%}
+		style="background-image: url('{{ section.settings.bg_image | img_url: ''}}');{{ bg_setting }}"
+	{%- endcapture -%}
+{%- endif -%}
+
+{%- assign bg_content = '' -%}
+{%- if section.settings.bg_image != blank and section.settings.bg_width == 'content' -%}
+	{%- capture bg_content -%}
+		style="background-image: url('{{ section.settings.bg_image | img_url: ''}}');{{ bg_setting }}"
+	{%- endcapture -%}
+{%- endif -%}
+
+{% assign width_content_left 	= section.settings.width_content_policy | split: "|" %}
+{% assign width_content_right 	= section.settings.width_content_image | split: "|" %}
+{% assign margin 				= section.settings.margin | split: "|" %}
+{% assign padding 				= section.settings.padding | split: "|" %}
+{%- style -%}
+	{%- if margin[0] != blank or padding[0] != blank -%}
+		#shopify-section-{{ section.id }} .bwp-widget-policy-2{
+			{%- if margin[0] != blank -%}margin: {{ margin[0] }};{%- endif -%}
+			{%- if padding[0] != blank -%}padding:{{ padding[0] }};{%- endif -%}
+		}
+	{%- endif -%}
+	#shopify-section-{{ section.id }} .bwp-widget-policy-2 .content-left{
+		max-width:{{ width_content_left[0] }};flex: 0 0 {{ width_content_left[0] }};
+	}
+	#shopify-section-{{ section.id }} .bwp-widget-policy-2 .content-right{
+		max-width:{{ width_content_right[0] }};flex: 0 0 {{ width_content_right[0] }};
+	}
+	@media (max-width:1200px){
+		{%- if margin[1] != blank or padding[1] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy-2{
+				{%- if margin[1] != blank -%}margin: {{ margin[1] }};{%- endif -%}
+				{%- if padding[1] != blank -%}padding:{{ padding[1] }};{%- endif -%}
+			}
+		{%- endif -%}
+		{%- if width_content_left[1] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy-2 .content-left{
+				max-width:{{ width_content_left[1] }};flex: 0 0 {{ width_content_left[1] }};
+			}
+		{%- endif -%}
+		{%- if width_content_right[1] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy-2 .content-right{
+				max-width:{{ width_content_right[1] }};flex: 0 0 {{ width_content_right[1] }};
+			}
+		{%- endif -%}
+	}
+	@media (max-width:991px){
+		{%- if margin[2] != blank or padding[2] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy-2{
+				{%- if margin[2] != blank -%}margin: {{ margin[2] }};{%- endif -%}
+				{%- if padding[2] != blank -%}padding:{{ padding[2] }};{%- endif -%}
+			}
+		{%- endif -%}
+		{%- if width_content_left[2] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy-2 .content-left{
+				max-width:{{ width_content_left[2] }};flex: 0 0 {{ width_content_left[2] }};
+			}
+		{%- endif -%}
+		{%- if width_content_right[2] != blank -%}
+			#shopify-section-{{ section.id }} .bwp-widget-policy-2 .content-right{
+				max-width:{{ width_content_right[2] }};flex: 0 0 {{ width_content_right[2] }};
+			}
+		{%- endif -%}
+	}
+{%- endstyle -%}
+
+<section class="wpbingo-section bwp-widget-policy-2 wpbingo-section--{{ section.id }} overflow-hidden" {{ bg_full }}>
+	<div class="{{ container }}" {{ max_width }}>
+		<div class="wpbingo-section__inner" {{ bg_content }}>
+			<div class="wpbingo-section__content">
+				<div class="content-left">
+					<div class="content-width">
+						{{ width_content[2] }}
+						{%- if section.settings.title -%}
+							<h2 class="bwp-title">{{ section.settings.title }}</h2>
+						{%- endif -%}
+						{%- if section.blocks.size > 0 -%}
+							<div class="row--policys bwp-load-slick-mobile" data-col1="1" data-col2="1" data-dot="true" data-nav="false" data-autoplay="true">
+								{%- for block in section.blocks -%}
+									{%- assign style_image 		= block.settings.style_image -%}
+									{%- assign poli_image 		= block.settings.poli_image -%}
+									{%- assign poli_svg 		= block.settings.poli_svg -%}
+									{%- assign poli_title 		= block.settings.poli_title -%}
+									{%- assign poli_description = block.settings.poli_description -%}
+									{%- assign col_policy 		= '' -%}
+									{%- capture col_policy -%}
+										{%- if block.settings.width_image != blank -%}
+											max-width: {{ block.settings.width_image }};flex:0 0 {{ block.settings.width_image }};
+										{%- endif -%}
+										{%- if block.settings.padding_image != blank -%}padding:{{ block.settings.padding_image }};{%- endif -%}
+									{%- endcapture -%}
+									<div class="col-policy" style="{{ col_policy }}">
+										<div class="featured-policy">
+											<div class="bwp-image" style="fill:{{ block.settings.color_svg }};" >
+												{%- if style_image == 'image' -%}
+													{%- if poli_image -%}
+														<img class="featured-banner__img lazyload fade-in" src="{{ poli_image | img_url: '' }}" alt="{{ poli_image.alt | escape }}"/>
+													{%- endif -%}
+												{%- else -%}
+													{%- if poli_svg -%}
+														{{ poli_svg }}
+													{%- endif -%}
+												{%- endif -%}
+											</div>
+											<div class="policy-wrapper-infor">
+												<div class="info">
+													<div class="content">
+														{%- if poli_title != blank -%}
+															<h3 class="title-policy" style="color:{{ block.settings.color_poli_title }}">{{ poli_title }}</h3>
+														{%- endif -%}
+														{%- if poli_description != blank -%}
+															<div class="bwp-image-description" style="color:{{ block.settings.color_poli_description }}">{{ poli_description }}</div>
+														{%- endif -%}
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								{%- endfor -%}
+							</div>
+						{%- endif -%}
+						{%- if section.settings.button -%}
+							<a class="bwp-button {{ section.settings.style_button }}" href="{{ section.settings.link_button }}"><span>{{ section.settings.button }}</span></a>
+						{%- endif -%}
+					</div>
+				</div>
+				<div class="content-right">
+					{%- if section.settings.image_content -%}
+						{% include 'img-global' with image: section.settings.image_content, class: "featured-policy__img", effect: "fade-in" %}
+					{%- else -%}
+						<img class="lazyload fade-in" src="https://placehold.jp/820x674.png" />
+					{%- endif -%}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Wpbingo Policy 2",
+	"class": "wpbingo-framework",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Layout settings"
+		},
+		{
+			"type": "image_picker",
+			"id": "bg_image",
+			"label": "Background Image"
+		},
+		{
+			"type": "checkbox",
+			"id": "bg_fixed",
+			"label": "Background Fixed"
+		},
+		{
+			"type": "text",
+			"id": "bg_position",
+			"label": "Background position",
+			"default": "center"
+		},
+		{
+			"type": "text",
+			"id": "bg_size",
+			"label": "Background size",
+			"default": "cover"
+		},
+		{
+			"type": "select",
+			"id": "bg_width",
+			"label": "Background Width",
+			"options": [
+				{
+					"value": "full",
+					"label": "Full"
+				},
+				{
+					"value": "content",
+					"label": "Content"
+				}
+			],
+			"default": "full"
+		},
+		{
+			"type": "text",
+			"id": "max_width",
+			"label": "Width container",
+			"info": "Default: 1440px"
+		},
+		{
+			"type": "checkbox",
+			"id": "fullwidth",
+			"label": "Fullwidth"
+		},
+		{
+			"type": "text",
+			"id": "padding",
+			"label": "Padding",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		},
+		{
+			"type": "text",
+			"id": "margin",
+			"label": "Margin",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		},
+		{
+			"type": "header",
+			"content": "General Settings"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_content",
+			"label": "Banner Image"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "text",
+			"id": "button",
+			"label": "button"
+		},
+		{
+			"type": "url",
+			"id": "link_button",
+			"label": "Link button"
+		},
+		{
+			"type": "select",
+			"id": "style_button",
+			"label": "Style Button",
+			"options": [
+				{
+					"value": "style_1",
+					"label": "Style 1"
+				},
+				{
+					"value": "style_2",
+					"label": "Style 2"
+				},
+				{
+					"value": "style_3",
+					"label": "Style 3"
+				}
+			],
+			"default": "style_1"
+		},
+		{
+			"type": "text",
+			"id": "width_content_image",
+			"default": "100%",
+			"label": "Width content Image",
+			"info":"Screen: desktop | 1200px | 991px"
+		},
+		{
+			"type": "text",
+			"id": "width_content_policy",
+			"default": "100%",
+			"label": "Width content policy",
+			"info":"Screen: desktop | 1200px | 991px"
+		}
+	],
+	"blocks": [
+		{
+			"type": "image",
+			"name": "Image",
+			"settings": [
+				{
+					"type": "select",
+					"id": "style_image",
+					"label": "Style Image",
+					"options": [
+						{
+							"value": "svg",
+							"label": "SVG"
+						},
+						{
+							"value": "image",
+							"label": "Image"
+						}
+					],
+					"default": "svg"
+				},
+				{
+					"type": "html",
+					"id": "poli_svg",
+					"label": "SVG"
+				},
+				{
+					"type": "image_picker",
+					"id": "poli_image",
+					"label": "Image"
+				},
+				{
+					"type": "color",
+					"id": "color_svg",
+					"label": "Color Svg",
+					"default": "#000000"
+				},
+				{
+					"type": "text",
+					"id": "poli_title",
+					"label": "Title"
+				},
+				{
+					"type": "color",
+					"id": "color_poli_title",
+					"label": "Color Title",
+					"default": "#000000"
+				},
+				{
+					"type": "textarea",
+					"id": "poli_description",
+					"label": "Description"
+				},
+				{
+					"type": "color",
+					"id": "color_poli_description",
+					"label": "Color Description",
+					"default": "#000000"
+				},
+				{
+					"type": "header",
+					"content": "Box settings"
+				},
+				{
+					"type": "text",
+					"id": "padding_image",
+					"label": "Padding item",
+					"default": "0 15px",
+					"info": "Only for screens larger than 1200px"
+				},
+				{
+					"type": "text",
+					"id": "width_image",
+					"label": "Width item",
+					"default": "100%",
+					"info": "Only for screens larger than 1200px"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Wpbingo Policy 2",
+			"category": "2. policy"
+		}
+	]
+}
+{% endschema %}

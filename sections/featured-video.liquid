@@ -1,0 +1,88 @@
+{%- if section.settings.fullwidth -%}
+  {%- assign container = 'container-fluid' -%}
+{%- else -%}
+  {%- assign container = 'container' -%}
+{%- endif -%}
+{%- assign margin = '' -%}
+{%- if section.settings.margin != blank -%}
+  {%- capture margin -%}margin: {{ section.settings.margin }};{%- endcapture -%}
+{%- endif -%}
+{%- assign heading = section.settings.title | escape -%}
+
+<section
+  class="wpbingo-section wpbingo-section--video wpbingo-section--{{ section.id }} overflow-hidden"
+  style="{{ margin }}">
+  <div class="{{ container }}">
+    <div class="wpbingo-section__inner">
+      {%- if heading != blank -%}
+        <div class="wpbingo-title{% if settings.show_title_bg %} wpbingo-title--bg-img{% endif %}">
+          <h3 class="wpbingo-title__heading">{{ heading }}</h3>
+        </div>
+      {%- endif -%}
+      <div class="wpbingo-section__content">
+        <div class="video-wrapper">
+          {%- if section.settings.video_url == blank -%}
+            <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+          {%- else -%}
+            {%- if section.settings.video_url.type == "youtube" -%}
+              <iframe src="//www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+            {%- endif -%}
+            {%- if section.settings.video_url.type == "vimeo" -%}
+              <iframe src="//player.vimeo.com/video/{{ section.settings.video_url.id }}?color={{ settings.color_secondary | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video",
+  "class": "wpbingo-framework",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "Fullwidth"
+    },
+    {
+      "type": "text",
+      "id": "margin",
+      "label": "Margin",
+      "placeholder": "0px 0px 0px 0px",
+      "info": "Default: 0px 0px 0px 0px"
+    },
+    {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Section Video"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video link",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video",
+      "category": "7. Video"
+    }
+  ]
+}
+{% endschema %}

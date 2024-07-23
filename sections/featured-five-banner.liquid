@@ -1,0 +1,359 @@
+{%- if section.settings.fullwidth -%}
+	{%- assign container = 'container-full' -%}
+{%- elsif section.settings.max_width != blank -%}
+	{%- assign container = 'bwp-container' -%}
+{%- else -%}
+	{%- assign container = 'container' -%}
+{%- endif -%}
+
+{%- assign max_width = '' -%}
+{%- if section.settings.fullwidth == blank and section.settings.max_width != blank -%}
+	{%- assign width_container = section.settings.max_width | plus: 0 -%}
+	{%- capture max_width -%}style="max-width: {{ section.settings.max_width }};"{%- endcapture -%}
+{%- endif -%}
+
+{%- assign margin = '' -%}
+{%- if section.settings.margin != blank -%}
+  {%- capture margin -%}margin: {{ section.settings.margin }};{%- endcapture -%}
+{%- endif -%}
+{%- assign effect = section.settings.effect -%}
+{% assign margin 	= section.settings.margin | split: "|" %}
+{% assign padding 	= section.settings.padding | split: "|" %}
+{%- style -%}
+	{%- if margin[0] != blank or padding[0] != blank -%}
+		#shopify-section-{{ section.id }} .wpbingo-section--five-banner{
+			{%- if margin[0] != blank -%}margin: {{ margin[0] }};{%- endif -%}
+			{%- if padding[0] != blank -%}padding:{{ padding[0] }};{%- endif -%}
+		}
+	{%- endif -%}
+	{%- if margin[1] != blank or padding[1] != blank -%}
+		@media (max-width:1200px){
+			#shopify-section-{{ section.id }} .wpbingo-section--five-banner{
+				{%- if margin[1] != blank -%}margin: {{ margin[1] }};{%- endif -%}
+				{%- if padding[1] != blank -%}padding:{{ padding[1] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+	{%- if margin[2] != blank or padding[2] != blank -%}
+		@media (max-width:991px){
+			#shopify-section-{{ section.id }} .wpbingo-section--five-banner{
+				{%- if margin[2] != blank -%}margin: {{ margin[2] }};{%- endif -%}
+				{%- if padding[2] != blank -%}padding:{{ padding[2] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+	{%- if margin[3] != blank or padding[3] != blank -%}
+		@media (max-width:767px){
+			#shopify-section-{{ section.id }} .wpbingo-section--five-banner{
+				{%- if margin[3] != blank -%}margin: {{ margin[3] }};{%- endif -%}
+				{%- if padding[3] != blank -%}padding:{{ padding[3] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+{%- endstyle -%}
+
+<section class="wpbingo-section wpbingo-section--five-banner overflow-hidden">
+	<div class="{{ container }}" {{ max_width }}>
+		<div class="wpbingo-section__inner">
+			<div class="wpbingo-section__content">
+				<div class="single-banner">
+					<div class="banner-1 featured-banner {{ effect }}">
+						<div class="bwp-image" >
+							<a href="{{ section.settings.image_url1 }}">
+								{%- if section.settings.image1 -%}
+									{% include 'img-global' with image: section.settings.image1, class: "featured-banner__img", effect: "fade-in" %}
+								{%- else -%}
+									<img class="lazyload fade-in" src="https://placehold.jp/527x652.png" width="527" height="652" />
+								{%- endif -%}
+							</a>
+						</div>
+						<div class="banner-wrapper-infor">
+							<div class="info">
+								<div class="content">
+									{%- if section.settings.button1 != blank -%}
+										<a class="bwp-button {{ section.settings.style_button }}" href="{{ section.settings.url1 }}"><span>{{ section.settings.button1 }}</span></a>
+									{%- endif -%}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="group-banner">
+					<div class="banner-2 featured-banner {{ effect }}">
+						<div class="bwp-image" >
+							<a href="{{ section.settings.image_url2 }}">
+								{%- if section.settings.image2 -%}
+									{% include 'img-global' with image: section.settings.image2, class: "featured-banner__img", effect: "fade-in" %}
+								{%- else -%}
+									<img class="lazyload fade-in" src="https://placehold.jp/659x317.png" width="659" height="317" />
+								{%- endif -%}
+							</a>
+						</div>
+						<div class="banner-wrapper-infor">
+							<div class="info">
+								<div class="content">
+									{%- if section.settings.button2 != blank -%}
+										<a class="bwp-button {{ section.settings.style_button }}" href="{{ section.settings.url2 }}"><span>{{ section.settings.button2 }}</span></a>
+									{%- endif -%}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="banner-3 featured-banner {{ effect }}">
+						<div class="bwp-image" >
+							<a href="{{ section.settings.image_url3 }}">
+								{%- if section.settings.image3 -%}
+									{% include 'img-global' with image: section.settings.image3, class: "featured-banner__img", effect: "fade-in" %}
+								{%- else -%}
+									<img class="lazyload fade-in" src="https://placehold.jp/322x323.png" width="322" height="323" />
+								{%- endif -%}
+							</a>
+						</div>
+						<div class="banner-wrapper-infor">
+							<div class="info">
+								<div class="content">
+									{%- if section.settings.button3 != blank -%}
+										<a class="bwp-button {{ section.settings.style_button }}" href="{{ section.settings.url3 }}"><span>{{ section.settings.button3 }}</span></a>
+									{%- endif -%}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="banner-4 featured-banner {{ effect }}">
+						<div class="bwp-image" >
+							<a href="{{ section.settings.image_url4 }}">
+								{%- if section.settings.image4 -%}
+									{% include 'img-global' with image: section.settings.image4, class: "featured-banner__img", effect: "fade-in" %}
+								{%- else -%}
+									<img class="lazyload fade-in" src="https://placehold.jp/320x322.png" width="320" height="322" />
+								{%- endif -%}
+							</a>
+						</div>
+						<div class="banner-wrapper-infor">
+							<div class="info">
+								<div class="content">
+									{%- if section.settings.button4 != blank -%}
+										<a class="bwp-button {{ section.settings.style_button }}" href="{{ section.settings.url4 }}"><span>{{ section.settings.button4 }}</span></a>
+									{%- endif -%}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="single-banner">
+					<div class="banner-5 featured-banner {{ effect }}">
+						<div class="bwp-image" >
+							<a href="{{ section.settings.image_url5 }}">
+								{%- if section.settings.image5 -%}
+									{% include 'img-global' with image: section.settings.image5, class: "featured-banner__img", effect: "fade-in" %}
+								{%- else -%}
+									<img class="lazyload fade-in" src="https://placehold.jp/527x652.png" width="527" height="652" />
+								{%- endif -%}
+							</a>
+						</div>
+						<div class="banner-wrapper-infor">
+							<div class="info">
+								<div class="content">
+									{%- if section.settings.button5 != blank -%}
+										<a class="bwp-button {{ section.settings.style_button }}" href="{{ section.settings.url5 }}"><span>{{ section.settings.button5 }}</span></a>
+									{%- endif -%}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% schema %}
+{
+	"name": "Wpbingo Five Banner",
+	"class": "wpbingo-framework",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Layout settings"
+		},
+		{
+			"type": "text",
+			"id": "max_width",
+			"label": "Width container",
+			"info": "Default: 1440px"
+		},
+		{
+			"type": "checkbox",
+			"id": "fullwidth",
+			"label": "Fullwidth"
+		},
+		{
+			"type": "text",
+			"id": "padding",
+			"label": "Padding",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		},
+		{
+			"type": "text",
+			"id": "margin",
+			"label": "Margin",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		},
+		{
+			"type": "select",
+			"id": "style_button",
+			"label": "Style Button",
+			"options": [
+				{
+					"value": "style_1",
+					"label": "Style 1"
+				},
+				{
+					"value": "style_2",
+					"label": "Style 2"
+				},
+				{
+					"value": "style_3",
+					"label": "Style 3"
+				}
+			],
+			"default": "style_1"
+		},
+		{
+			"type": "header",
+			"content": "Banner 1"
+		},
+		{
+			"type": "image_picker",
+			"id": "image1",
+			"label": "Image"
+		},
+		{
+			"type": "text",
+			"id": "button1",
+			"label": "button"
+		},
+		{
+			"type": "url",
+			"id": "url1",
+			"label": "Image URL",
+			"default": "/"
+		},
+		{
+			"type": "header",
+			"content": "Banner 2"
+		},
+		{
+			"type": "image_picker",
+			"id": "image2",
+			"label": "Image"
+		},
+		{
+			"type": "text",
+			"id": "button2",
+			"label": "button"
+		},
+		{
+			"type": "url",
+			"id": "url2",
+			"label": "Image URL",
+			"default": "/"
+		},
+		{
+			"type": "header",
+			"content": "Banner 3"
+		},
+		{
+			"type": "image_picker",
+			"id": "image3",
+			"label": "Image"
+		},
+		{
+			"type": "text",
+			"id": "button3",
+			"label": "button"
+		},
+		{
+			"type": "url",
+			"id": "url3",
+			"label": "Image URL",
+			"default": "/"
+		},
+		{
+			"type": "header",
+			"content": "Banner 4"
+		},
+		{
+			"type": "image_picker",
+			"id": "image4",
+			"label": "Image"
+		},
+		{
+			"type": "text",
+			"id": "button4",
+			"label": "button"
+		},
+		{
+			"type": "url",
+			"id": "url4",
+			"label": "Image URL",
+			"default": "/"
+		},
+		{
+			"type": "header",
+			"content": "Banner 5"
+		},
+		{
+			"type": "image_picker",
+			"id": "image5",
+			"label": "Image"
+		},
+		{
+			"type": "text",
+			"id": "button5",
+			"label": "button"
+		},
+		{
+			"type": "url",
+			"id": "url5",
+			"label": "Image URL",
+			"default": "/"
+		},
+		{
+			"type": "select",
+			"id": "effect",
+			"options": [
+				{
+					"value": "none",
+					"label": "None"
+				},
+				{
+					"value": "effect-one",
+					"label": "Zoom in"
+				},
+				{
+					"value": "effect-two",
+					"label": "Zoom out"
+				},
+				{
+					"value": "effect-three",
+					"label": "Shine"
+				},
+				{
+					"value": "effect-four",
+					"label": "White outline"
+				}
+			],
+			"label": "Effect",
+			"default": "none"
+		}
+	],
+	"presets": [
+		{
+			"name": "Wpbingo Five Banner",
+			"category": "5. Image"
+		}
+	]
+}
+{% endschema %}

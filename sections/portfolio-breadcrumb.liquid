@@ -1,0 +1,70 @@
+{%- if section.settings.enable -%}
+	{%- assign is_bg_image = section.settings.bgimage -%}
+	{%- if is_bg_image -%}
+		{%- assign class_name = 'wpbingo-breadcrumbs--image' -%}
+	{%- else -%}
+		{%- assign class_name = 'wpbingo-breadcrumbs--no-image' -%}
+	{%- endif -%}
+	<section class="wpbingo-breadcrumbs {{ class_name }} {% if blog.all_tags %} have-blog-list{% endif %}">
+		{%- assign bg_image = section.settings.image -%}
+		<div class="wpbingo-breadcrumbs__image"
+			{%- if is_bg_image -%}
+			style="background-image: url('{{ bg_image | image_url:width:bg_image.width,height:bg_image.height }}');background-size:cover; background-position:center center"{%- endif -%}>
+			<div class="container">
+				<div class="wpbingo-breadcrumbs__inner">
+					<h2 class="wpbingo-breadcrumbs__title">{{ blog.title }}</h2>
+					<div class="wpbingo-blog-list">
+						<div class="item-blog{% unless current_tags %} active{% endunless %}">
+							<a href="{{ blog.url }}" title="{{ blog.title }} - {{ 'blogs.portfolio.tagged' | t }} '{{ 'blogs.portfolio.all' | t }}'">
+								{{ 'blogs.portfolio.all' | t }}
+							</a>
+						</div>
+						{% if current_tags %}
+							{% for tag in blog.all_tags %}
+								{% for current in current_tags %}  
+									<div class="item-blog{% if tag == current %} active{% endif %}">
+										<a title="{{ blog.title }} - {{ 'blogs.portfolio.tagged' | t }} '{{ tag }}'" href="/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+									</div>
+								{% endfor %}
+							{% endfor %}
+						{% else %}
+							{% for tag in blog.all_tags %}
+								<div class="item-blog">
+									<a title="{{ blog.title }} - {{ 'blogs.portfolio.tagged' | t }} '{{ tag }}'" href="/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+								</div>
+							{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{%- endif -%}
+{% schema %}
+	{
+		"name": "Breadcrumb",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Settings"
+			},
+			{
+				"type": "checkbox",
+				"id": "enable",
+				"label": "Enable",
+				"default": true
+			},
+			{
+				"type": "checkbox",
+				"id": "bgimage",
+				"label": "Use background image"
+			},
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Background image default",
+				"info": "Default size: 1920x480 pixels"
+			}
+		]
+	}
+{% endschema %}

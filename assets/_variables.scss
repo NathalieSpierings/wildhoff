@@ -1,0 +1,354 @@
+$grid-breakpoints: (XS: 0, S: 576px, M: 750px, L: 990px, XL: 1200px) !default;
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @return if(
+    $n != null and $n < length($breakpoint-names),
+    nth($breakpoint-names, $n + 1),
+    null
+    );
+}
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {$min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02, null);
+}
+
+@mixin MQ-min($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+@mixin MQ-max($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+@mixin MQ-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include MQ-min($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include MQ-max($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+
+@function contra-color($color) {
+  @if (lightness($color) > 75) {
+      @return var(--#{dark});
+  } @else {
+      @return var(--#{light});
+  }
+}
+
+
+$shades: (
+    black: #000000,
+    white: #ffffff,
+    offwhite: #fdfdfc,
+    dark: #3f3f3f,
+    light: #f3f1ee,
+    nero: #222222,
+    ink: #292929,
+    gritti: #57514c,
+    taupe: #74706d,
+    taupe-dark: darken(#74706d, 8%),
+    taupe-light: lighten(#74706d, 5%),
+    taupe-lighter: lighten(#74706d, 15%),
+    olive-light: #b9b9b4,
+    clay: #d6d4d1,
+    leem: #6f6863,
+    mud: #b6b1ab,
+    pepper: #9a928a,
+    sand: #cac6c3,
+    powder: #fdf2e1,
+    cream: #fdf2e1,
+    beige: #d9d4d0,
+    peach: #f9dac4,
+    havanna: #dcb681,
+    salmon: #e2ae9d,
+    blush: #decdca,
+    sienna: #9c7a75,
+    rose: #c98a96,
+    pale: #fbb7a7,
+    gold: #a48558,
+    orange: #CA806A,
+    grey: (
+        50: #f2f2f2,
+        100: #f5f5f5,
+        200: #eeeeee,
+        300: #e0e0e0,
+        400: #dbdbdb,
+        base: #9e9e9e,
+        600: #757575,
+        700: #616161,
+        800: #424242,
+        900: #212121
+    ),
+    theme: (
+        scheme-1: (
+            // Light
+            background: #f3f1ee,
+            foreground: #57514c,
+            mute: lighten(#57514c, 25%),
+            border: darken(#f3f1ee, 15%),
+            link: #57514c,
+            alpha-link: 0.7,
+            error: #ce5155,
+            warning: #e2985d,
+            success: #4e8c7c,
+            info: #479cbc,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%), 
+            secondary: #9d817d, 
+            secondary-alt: darken(#9d817d, 5%)
+        ),
+        scheme-2: (
+            // Beige
+            background: #b6b1ab,
+            foreground: #57514c,
+            mute: lighten(#57514c, 15%),
+            border: darken(#b6b1ab, 10%),
+            link: #57514c,
+            alpha-link: 0.7,
+            error: #ce5155,
+            warning: #cb8954,
+            success: #579283,
+            info: #408ca9,
+            primary: #79846f, 
+            primary-alt:darken(#79846f, 5%), 
+            secondary: #8c7572, 
+            secondary-alt:darken(#8c7572, 5%)
+        ),
+        scheme-3: (
+            // Taupe
+            background: #535353, //#74706d,
+            foreground: #cac6c3,
+            mute: darken(#cac6c3, 15%),
+            border: #898583,
+            link: #cac6c3,
+            alpha-link: 0.6,
+            error: #823335,
+            warning: #e2985d,
+            success: #71a396,
+            info: #6cb0c9,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%), 
+            secondary: #8c7572, 
+            secondary-alt:lighten(#8c7572, 5%) 
+        ), 
+        dark: (
+            background: #3f3f3f,
+            foreground: #9f9790,
+            mute: darken(#9f9790, 15%),
+            border: darken(#9f9790, 25%),
+            link: #9a928a,
+            alpha-link: 0.7,
+            error: #d36266,
+            warning: #e2985d,
+            success: #4e8c7c,
+            info: #479cbc,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%),
+            secondary: #8c7572, 
+            secondary-alt:lighten(#8c7572, 5%) 
+        ),
+        light: (
+            background: #fdfdfc,
+            foreground: #57514c,
+            mute: lighten(#57514c, 25%),
+            border: darken(#fdfdfc, 20%),
+            link: #57514c,
+            alpha-link: 0.85,
+            error: #ce5155,
+            warning: #e2985d,
+            success: #4e8c7c,
+            info: #479cbc,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%), 
+            secondary: #9d817d, 
+            secondary-alt: darken(#9d817d, 5%)
+        ),       
+        background-1: (
+            background: #fdfdfc,
+            foreground: #57514c,
+            mute: lighten(#57514c, 25%),
+            border: darken(#fdfdfc, 20%),
+            link: #57514c,
+            alpha-link: 0.85,
+            error: #ce5155,
+            warning: #e2985d,
+            success: #4e8c7c,
+            info: #479cbc,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%), 
+            secondary: #9d817d, 
+            secondary-alt: darken(#9d817d, 5%)
+        ),
+        inverse: (
+            background: #3f3f3f,
+            foreground: #fdfdfc,
+            mute: lighten(#3f3f3f, 25%),
+            border: lighten(#3f3f3f, 10%),
+            link: #fdfdfc,
+            alpha-link: 0.7,
+            error: #ce5155,
+            warning: #e2985d,
+            success: #4e8c7c,
+            info: #479cbc,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%),
+            secondary: #8c7572, 
+            secondary-alt:lighten(#8c7572, 5%) 
+        ),
+        accent-1: (
+            background: #85927c,
+            foreground: #fdfdfc,
+            mute: lighten(#85927c, 25%),
+            border: darken(#85927c, 10%),
+            link: #fdfdfc,
+            alpha-link: 0.7,
+            error: #ce5155,
+            warning: #e2985d,
+            success: lighten(#72897d, 15%),
+            info: #479cbc,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%), 
+            secondary: #8c7572, 
+            secondary-alt:lighten(#8c7572, 5%) 
+        ),
+        accent-2: (
+            background: #9d817d,
+            foreground: #fdfdfc,
+            mute: lighten(#9d817d, 25%),
+            border: darken(#9d817d, 10%),
+            link: #57514c,
+            alpha-link: 0.7,
+            error: #ce5155,
+            warning: #e2985d,
+            success: #bcc7c1,
+            info: #479cbc,
+            primary: #79846f, 
+            primary-alt:lighten(#79846f, 5%), 
+            secondary: #8c7572, 
+            secondary-alt:lighten(#8c7572, 5%) 
+        )
+    )
+);
+
+// === Set css variables
+:root {
+  @each $name, $color in $shades {
+      @if type-of($color) == "map" {
+          @each $subname, $subcolor in $color {
+              // Third level (themes)
+              @if type-of($subcolor) == "map" {
+                  @each $subsubname, $subsubcolor in $subcolor {
+                      @if ($subsubname == "alpha-link") {
+                          #{--}#{$subname}-#{$subsubname}: $subsubcolor;
+                      } @else {
+                          $rgb: red($subsubcolor), green($subsubcolor),
+                              blue($subsubcolor);
+                          #{--}#{$subname}-#{$subsubname}: $rgb;
+                      }
+                  }
+              } @else {
+                  $rgb: red($subcolor), green($subcolor), blue($subcolor);
+
+                  #{--}#{$name}-#{$subname}: $rgb;
+              }
+          }
+      } @else if type-of($color) == "color" {
+          $rgb: red($color), green($color), blue($color);
+
+          #{--}#{$name}: #{$rgb};
+      }
+  }
+}
+
+
+
+// === Set css styles
+@each $name, $color in $shades {
+  @if type-of($color) == "map" {
+      @each $subname, $subcolor in $color {
+          // Third level (themes)
+          @if type-of($subcolor) == "map" {
+              #{".color-"}#{$subname} {
+                  --color-foreground: var(--#{$subname}-#{foreground});
+                  --color-background: var(--#{$subname}-#{background});
+                  --color-mute: var(--#{$subname}-#{mute});
+                  --color-border: var(--#{$subname}-#{border});
+                  --color-link: var(--#{$subname}-#{link});
+                  --alpha-link: var(--#{$subname}-#{alpha-link});
+                  --color-error: var(--#{$subname}-#{error});
+                  --color-success: var(--#{$subname}-#{success});
+                  --color-info: var(--#{$subname}-#{info});
+                  --color-warning: var(--#{$subname}-#{warning});
+                  --color-primary: var(--#{$subname}-#{primary});
+                  --color-primary-alt: var(--#{$subname}-#{primary-alt});
+                  --color-secondary: var(--#{$subname}-#{secondary});
+                  --color-secondary-alt: var(--#{$subname}-#{secondary-alt});
+
+                  color: rgb(var(--color-foreground));
+                  background: rgb(var(--color-background));
+              }
+          }
+      }
+  } @else {
+      @if ($name == "background") {
+      } @else if($name == "border") {
+      } @else {
+          $contraColor: contra-color($color);
+          .text-#{$name} {
+              color: rgb(var(--#{$name})) !important;
+          }
+          
+          .btn-#{$name} {
+              --button-foreground: #{$contraColor} !important;
+              --button-background: var(--#{$name}) !important;
+              --button-border: var(--#{$name}) !important;
+          }
+      }
+  }
+}
+
+
+
+.text-primary{
+    color:rgb(var(--color-primary)) !important;
+}
+
+.text-primary-alt{
+    color:rgb(var(--color-primary-alt)) !important;
+}
+
+.text-secondary{
+    color:rgb(var(--color-secondary)) !important;
+}
+
+.text-secondary-alt{
+    color:rgb(var(--color-secondary-alt)) !important;
+}

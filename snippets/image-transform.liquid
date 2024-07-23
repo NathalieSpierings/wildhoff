@@ -1,0 +1,25 @@
+{%- if settings.product_within_collection -%}
+	{%- assign product_url = product.url | within: collection -%}
+{%- else -%}
+	{%- assign product_url = product.url -%}
+{%- endif -%}
+{%- assign featured_image 		= product.featured_media.preview_image %}
+{%- if product.variants[0].featured_image.src -%}
+	{%- assign image = product.variants[0].featured_image.src -%}
+{%- else -%}
+	{%- assign image = product.images[1] -%}
+{%- endif -%}
+<a class="product-card__image-link" href="{{ product_url }}">
+	{% if featured_image.src == blank %}
+		<img class="product-card__image lazyload fade-in" src="https://placehold.jp/450x540.png"  width="450" height="540" alt="{{ featured_image.alt | escape }}">
+	{% else %}
+		<div class="product-card__image">
+			{% if  product.images.size > 1 %}
+				{% render 'img-global-product' with image: featured_image, class: "product-card__img-visible", effect: "fade-in" %}
+				{% render 'img-global-product' with image: image, class: "product-card__img-hidden variant", effect: "fade-in"  %}
+			{% else %}
+				{% render 'img-global-product' with image: featured_image, class: "product-card__img variant", effect: "fade-in" %}
+			{% endif %}
+		</div>
+	{% endif %}
+</a>
